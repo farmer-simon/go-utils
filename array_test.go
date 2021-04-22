@@ -1,0 +1,55 @@
+package egu
+
+import (
+	"fmt"
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
+
+func getIntItems() []int {
+	return []int{1, 2, 3, 4}
+}
+
+func getStringItems() []string {
+	return []string{"1", "2", "3", "4"}
+}
+
+func TestInt(t *testing.T) {
+	s := getIntItems()
+	a := Int(s)
+	assert.Equal(t, a.items, s)
+	assert.Equal(t, a.Length(), len(s))
+	assert.Equal(t, a.Implode(","), "1,2,3,4")
+	assert.Equal(t, a.ToString(), getStringItems())
+
+	a.Push(2)
+	assert.Equal(t, a.Length(), len(s)+1)
+	assert.Equal(t, a.Unique(), s)
+}
+
+func TestString(t *testing.T) {
+	s := getStringItems()
+	a := String(s)
+	assert.Equal(t, a.items, s)
+	assert.Equal(t, a.Length(), len(s))
+	assert.Equal(t, a.Implode(","), "1,2,3,4")
+	assert.Equal(t, a.ToInt(), getIntItems())
+
+	a.Push("2")
+	assert.Equal(t, a.Length(), len(s)+1)
+	assert.Equal(t, a.Unique(), s)
+}
+
+func TestExplode(t *testing.T) {
+	str := Implode( getIntItems(), ",")
+	fmt.Println(str)
+
+	items := Explode(str, ",")
+	fmt.Println(items)
+	assert.Equal(t, getIntItems(), items.ToInt())
+	assert.Equal(t, str, items.Implode(","))
+}
+
+func TestInArray(t *testing.T) {
+	assert.True(t, InArray("1", getStringItems()))
+}
