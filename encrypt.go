@@ -1,5 +1,4 @@
-package egu
-
+package utils
 
 import (
 	"crypto/md5"
@@ -7,8 +6,8 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"github.com/ebar-go/egu/aes"
-	"github.com/ebar-go/egu/rsa"
+	"gitee.com/1331305/go-utils/aes"
+	"gitee.com/1331305/go-utils/rsa"
 )
 
 //Md5 return the encrypt string by md5 algorithm
@@ -26,7 +25,6 @@ func Sha1(s string) string {
 	return fmt.Sprintf("%x", result)
 }
 
-
 // Encrypt
 type Encrypt interface {
 	// encrypt
@@ -42,11 +40,9 @@ func Aes(key []byte) Encrypt {
 }
 
 // Rsa encrypt
-func Rsa(public, private []byte) Encrypt  {
+func Rsa(public, private []byte) Encrypt {
 	return rsa.New(public, private)
 }
-
-
 
 // Base64Decode decode base64 string
 func Base64Decode(encoded string) []byte {
@@ -61,4 +57,3 @@ func Base64Decode(encoded string) []byte {
 func Base64Encode(source []byte) string {
 	return base64.StdEncoding.EncodeToString(source)
 }
-

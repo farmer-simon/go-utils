@@ -1,4 +1,4 @@
-module github.com/ebar-go/egu
+module gitee.com/1331305/go-utils
 
 go 1.14
 

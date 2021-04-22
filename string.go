@@ -1,4 +1,4 @@
-package egu
+package utils
 
 import uuid "github.com/satori/go.uuid"
 
@@ -6,7 +6,6 @@ import uuid "github.com/satori/go.uuid"
 func UUID() string {
 	return uuid.NewV4().String()
 }
-
 
 // DefaultString return defaultV if v is empty
 func DefaultString(v, defaultV string) string {
@@ -16,4 +15,3 @@ func DefaultString(v, defaultV string) string {
 
 	return v
 }
-

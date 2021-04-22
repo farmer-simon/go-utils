@@ -1,4 +1,4 @@
-package egu
+package utils
 
 import (
 	"fmt"
@@ -41,7 +41,7 @@ func TestString(t *testing.T) {
 }
 
 func TestExplode(t *testing.T) {
-	str := Implode( getIntItems(), ",")
+	str := Implode(getIntItems(), ",")
 	fmt.Println(str)
 
 	items := Explode(str, ",")

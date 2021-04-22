@@ -1,4 +1,4 @@
-package egu
+package utils
 
 import (
 	"bytes"

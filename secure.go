@@ -1,5 +1,4 @@
-package egu
-
+package utils
 
 import (
 	"fmt"
@@ -15,12 +14,9 @@ func FatalError(msg string, err error) {
 	log.Printf("%s Success\n", msg)
 }
 
-
-
 // SecurePanic only panic when err not nil
 func SecurePanic(err error) {
 	if err != nil {
 		panic(err)
 	}
 }
-

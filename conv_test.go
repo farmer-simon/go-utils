@@ -1,4 +1,5 @@
-package egu
+package utils
+
 import (
 	"github.com/stretchr/testify/assert"
 	"reflect"

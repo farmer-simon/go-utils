@@ -1,4 +1,4 @@
-package egu
+package utils
 
 import (
 	"math"
@@ -50,7 +50,6 @@ func DefaultInt(v, dv int) int {
 
 	return v
 }
-
 
 // RandInt 取随机数
 func RandInt(min, max int) int {

@@ -1,5 +1,4 @@
-package egu
-
+package utils
 
 import (
 	"fmt"
@@ -11,7 +10,6 @@ func TestHash(t *testing.T) {
 	fmt.Println(Md5("test"))
 	fmt.Println(Sha1("test"))
 }
-
 
 func TestBase64(t *testing.T) {
 	source := []byte("test")

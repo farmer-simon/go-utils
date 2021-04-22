@@ -1,5 +1,4 @@
-package egu
-
+package utils
 
 import (
 	"encoding/json"
@@ -77,12 +76,12 @@ func Byte2Str(b []byte) string {
 }
 
 // Int2String
-func Int2String(i int) string  {
+func Int2String(i int) string {
 	return strconv.Itoa(i)
 }
 
 // String2Int
-func String2Int(s string) int  {
-	i , _ := strconv.Atoi(s)
+func String2Int(s string) int {
+	i, _ := strconv.Atoi(s)
 	return i
 }

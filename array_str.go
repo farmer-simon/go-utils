@@ -1,4 +1,4 @@
-package egu
+package utils
 
 import "strconv"
 
@@ -68,4 +68,3 @@ func (s StringSlice) Has(elem string) bool {
 
 	return false
 }
-

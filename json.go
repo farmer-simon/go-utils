@@ -1,5 +1,4 @@
-package egu
-
+package utils
 
 import (
 	"fmt"
@@ -22,7 +21,7 @@ func JsonDecode(buf []byte, obj interface{}) error {
 }
 
 // MustJsonEncode only return string, ignore error
-func MustJsonEncode(v interface{}) string  {
+func MustJsonEncode(v interface{}) string {
 	buf, err := ffjson.Marshal(v)
 	if err != nil {
 		fmt.Printf("json encode %v err: %v", v, err)

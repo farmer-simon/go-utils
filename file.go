@@ -1,4 +1,4 @@
-package egu
+package utils
 
 import (
 	"fmt"
@@ -20,7 +20,6 @@ func RuntimeCaller() []string {
 	return trace
 }
 
-
 // GetCurrentPath return compiled executable file absolute path
 func GetCurrentPath() string {
 	path, _ := filepath.Abs(os.Args[0])
@@ -31,7 +30,6 @@ func GetCurrentPath() string {
 func GetCurrentDir() string {
 	return filepath.Dir(GetCurrentPath())
 }
-
 
 // PathExist check the given path exists
 func PathExist(path string) bool {
@@ -56,7 +54,6 @@ func Mkdir(dir string, parents bool) error {
 
 	return os.Mkdir(dir, os.ModePerm)
 }
-
 
 // SplitPathExt return filename and ext of path
 func SplitPathExt(path string) (string, string) {

@@ -1,5 +1,4 @@
-package egu
-
+package utils
 
 import (
 	"fmt"
@@ -12,7 +11,7 @@ const (
 )
 
 // GetUnixTime
-func GetUnixTime() time.Time  {
+func GetUnixTime() time.Time {
 	return time.Now()
 }
 

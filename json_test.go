@@ -1,5 +1,4 @@
-package egu
-
+package utils
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -23,7 +22,4 @@ func TestJson(t *testing.T) {
 	assert.Nil(t, JsonDecode([]byte(s), &d))
 	assert.Equal(t, o, d)
 
-
-
 }
-

@@ -1,4 +1,4 @@
-package egu
+package utils
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 )
 
 // Implode concat items by the given separator
-func Implode( items interface{}, separator string) string {
+func Implode(items interface{}, separator string) string {
 	return strings.Replace(strings.Trim(fmt.Sprint(items), "[]"), " ", separator, -1)
 }
 
