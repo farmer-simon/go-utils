@@ -1,102 +1,102 @@
-# egu
-easy golang utils
+# readme
+golang utils
 
 ## import
 ```
-go get github.com/ebar-go/egu
+go get gitee.com/1331305/go-utils
 ```
 ## String
 - UUID: generate unique id
 ```
-id := egu.UUID()
+id := utils.UUID()
 ```
 
 - DefaultString: return default value when string is empty
 ```
 var s string
-s = egu.DefaultString(s, "defaultValue")
+s = utils.DefaultString(s, "defaultValue")
 ```
 
 ## Number
 - Max: compare two number and return the max number
 ```
-max := egu.Max(1, 2) // max is 2
+max := utils.Max(1, 2) // max is 2
 ```
 
 - Min: compare two number and return the min number
 ```
-min := egu.Min(1, 2) // min is 1
+min := utils.Min(1, 2) // min is 1
 ```
 
 ## Json
 ```
-s, err := egu.JsonEncode(map[string]interface{}{"name":"test"})
+s, err := utils.JsonEncode(map[string]interface{}{"name":"test"})
 fmt.Println(s, err)
 m := make(map[string]interface{})
-decodeErr = egu.JsonDecode(s, &m)
+decodeErr = utils.JsonDecode(s, &m)
 fmt.Println(decodeErr, m)
 ```
 
 ## Date
 - GetTimeStr: return current time, eg:2019-12-30 22:00:00
 ```
-now := egu.GetTimeStr()
+now := utils.GetTimeStr()
 ``` 
 
 - GetDateStr(): return current date, eg: 2019-12-30
 ```
-day := egu.GetDateStr()
+day := utils.GetDateStr()
 ```
 
 ## Encrypt
 - Md5: return md5 encrypt string
 ```
-s := egu.Md5("123456")
+s := utils.Md5("123456")
 ```
 
 - Sha1: return hash encrypt string
 ```
-s := egu.Sha1("123456")
+s := utils.Sha1("123456")
 ```
 
 ## Convert
 - Str2Byte: convert string to byte
 ```
-b := egu.Str2Byte("123")
+b := utils.Str2Byte("123")
 ```
 
 - Byte2Str: convert byte to string
 ```
-s := egu.Byte2Str([]byte("123"))
+s := utils.Byte2Str([]byte("123"))
 ```
 
 ## Array
 - Implode: concat array with separator
 ```
 arr := []int{1,2,3}
-s := egu.Implode(arr, "-") // s is 1-2-3
+s := utils.Implode(arr, "-") // s is 1-2-3
 ```
 
 - Explode: split string with separator
 ```
-arr := egu.Explode("1-2-3", "-")
+arr := utils.Explode("1-2-3", "-")
 fmt.Println(arr.Items())
 ```
 
 ## File
 - PathExist: check file or directory exist
 ```
-if egu.PathExist("/home") {
+if utils.PathExist("/home") {
   fmt.Println("exist")
 }
 ```
 
 - Mkdir: create directory if not exist
 ```
-egu.Mkdir("/var/log/app", true)
+utils.Mkdir("/var/log/app", true)
 ```
 
 - RuntimeCaller: return code invoke trace, always use in panic/recover
 ```
-fmt.Println(egu.RuntimeCaller())
+fmt.Println(utils.RuntimeCaller())
 ```
