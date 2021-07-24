@@ -16,3 +16,7 @@ func TestDefaultString(t *testing.T) {
 	s := "a"
 	assert.Equal(t, s, DefaultString(s, ""))
 }
+
+func TestRandomString(t *testing.T) {
+	fmt.Println(RandomString(10))
+}
