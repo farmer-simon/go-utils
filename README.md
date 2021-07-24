@@ -3,7 +3,7 @@ golang utils
 
 ## import
 ```
-go get gitee.com/1331305/go-utils
+go get github.com/farmer-simon/go-utils
 ```
 ## String
 - UUID: generate unique id
