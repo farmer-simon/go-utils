@@ -4,6 +4,9 @@ import (
 	"bytes"
 	"crypto/rand"
 	uuid "github.com/satori/go.uuid"
+	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
+	"io/ioutil"
 	"math/big"
 )
 
@@ -33,4 +36,24 @@ func RandomString(len int) string {
 		container += string(str[randomInt.Int64()])
 	}
 	return container
+}
+
+//GbkToUtf8 Convert GBK to utf8 encoding
+func GbkToUtf8(s []byte) ([]byte, error) {
+	reader := transform.NewReader(bytes.NewReader(s), simplifiedchinese.GBK.NewDecoder())
+	d, e := ioutil.ReadAll(reader)
+	if e != nil {
+		return nil, e
+	}
+	return d, nil
+}
+
+//Utf8ToGbk Convert utf8 to GBK encoding
+func Utf8ToGbk(s []byte) ([]byte, error) {
+	reader := transform.NewReader(bytes.NewReader(s), simplifiedchinese.GBK.NewEncoder())
+	d, e := ioutil.ReadAll(reader)
+	if e != nil {
+		return nil, e
+	}
+	return d, nil
 }

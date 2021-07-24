@@ -17,6 +17,28 @@ var s string
 s = utils.DefaultString(s, "defaultValue")
 ```
 
+- RandomString return random string
+```
+s:=utils.RandomString(15)
+```
+
+- Convert character encoding
+```
+s := "GBK 与 UTF-8 编码转换测试"
+gbk, err := utils.Utf8ToGbk([]byte(s))
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(string(gbk))
+}
+
+utf8, err := utils.GbkToUtf8(gbk)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(string(utf8))
+}
+```
 ## Number
 - Max: compare two number and return the max number
 ```
