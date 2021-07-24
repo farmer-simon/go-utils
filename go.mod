@@ -1,4 +1,4 @@
-module gitee.com/1331305/go-utils
+module github.com/farmer-simon/go-utils
 
 go 1.14
 

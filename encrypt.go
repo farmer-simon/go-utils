@@ -6,8 +6,8 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"gitee.com/1331305/go-utils/aes"
-	"gitee.com/1331305/go-utils/rsa"
+	"github.com/farmer-simon/go-utils/aes"
+	"github.com/farmer-simon/go-utils/rsa"
 )
 
 //Md5 return the encrypt string by md5 algorithm
