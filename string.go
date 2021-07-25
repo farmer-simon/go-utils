@@ -57,3 +57,9 @@ func Utf8ToGbk(s []byte) ([]byte, error) {
 	}
 	return d, nil
 }
+
+//Substring Intercept sub string
+func Substring(s string, start, length int) string {
+	rs := []rune(s)
+	return string(rs[start:length])
+}
