@@ -44,3 +44,17 @@ func GetTimeStamp() int64 {
 func GetMicroTimeStampStr() string {
 	return fmt.Sprintf("%.6f", float64(GetTime().UnixNano())/1e9)
 }
+
+// DatetimeToUnixTimestamp return unix timestamp
+func DatetimeToUnixTimestamp(toBeCharge string) int64 {
+	loc, _ := time.LoadLocation("Local")
+	theTime, _ := time.ParseInLocation(TimeFormat, toBeCharge, loc)
+	sr := theTime.Unix()
+	return sr
+}
+
+// UnixTimestampToDatetime return datetime string
+func UnixTimestampToDatetime(timestamp int64) string {
+	dataTimeStr := time.Unix(timestamp, 0).Format(TimeFormat)
+	return dataTimeStr
+}
