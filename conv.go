@@ -80,8 +80,22 @@ func Int2String(i int) string {
 	return strconv.Itoa(i)
 }
 
-// String2Int
+// String2Int return int of string
 func String2Int(s string) int {
 	i, _ := strconv.Atoi(s)
 	return i
+}
+
+// String2Int64 return int64 of string
+func String2Int64(s string) int64 {
+	int64, err := strconv.ParseInt(s, 10, 64)
+	if err != nil {
+		return 0
+	}
+	return int64
+}
+
+// Int64ToString return string of int64
+func Int64ToString(i int64) string {
+	return strconv.FormatInt(i, 10)
 }
