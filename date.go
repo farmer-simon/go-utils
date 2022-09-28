@@ -97,8 +97,8 @@ func leapYears(date time.Time) (leaps int) {
 	return leaps
 }
 
-// GetDifference 获取两个时间相差的天数、小时、分、秒
-func GetDifference(sTime, eTime string) (days, hours, minutes, seconds int) {
+// GetDateTimeDifference 获取两个时间相差的天数、小时、分、秒
+func GetDateTimeDifference(sTime, eTime string) (days, hours, minutes, seconds int) {
 
 	startTime, err := time.Parse(TimeFormat, sTime)
 	if err != nil {
