@@ -97,9 +97,8 @@ func leapYears(date time.Time) (leaps int) {
 	return leaps
 }
 
-// GetDateTimeDifference 获取两个时间相差的天数、小时、分、秒
-func GetDateTimeDifference(sTime, eTime string) (days, hours, minutes, seconds int) {
-
+// GetDateTimeDifference 获取两个时间相差的天数、小时、分、秒, 开始时间是否大于结束时间
+func GetDateTimeDifference(sTime, eTime string) (days, hours, minutes, seconds int, exchange bool) {
 	startTime, err := time.Parse(TimeFormat, sTime)
 	if err != nil {
 		startTime = time.Now()
@@ -110,6 +109,7 @@ func GetDateTimeDifference(sTime, eTime string) (days, hours, minutes, seconds i
 	}
 	if startTime.After(endTime) {
 		startTime, endTime = endTime, startTime
+		exchange = true
 	}
 	// month-wise days
 	monthDays := [12]int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
@@ -179,6 +179,6 @@ func GetDateTimeDifference(sTime, eTime string) (days, hours, minutes, seconds i
 		days--
 	}
 
-	return days, hours, minutes, seconds
+	return days, hours, minutes, seconds, exchange
 
 }
