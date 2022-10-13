@@ -1,7 +1,10 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
+	"regexp"
+	"strings"
 	"time"
 )
 
@@ -60,7 +63,7 @@ func UnixTimestampToDatetime(timestamp int64) string {
 }
 
 // ParseDateTime return year, month, day, hour, minute, second
-func ParseDateTime(toBeCharge string) (year, month, day, hour, minute, second int) {
+func ParseDateTime(toBeCharge string) (year, month, day, hour, minute, second, weekday int) {
 	timeObj, err := time.Parse(TimeFormat, toBeCharge)
 	if err != nil {
 		return
@@ -71,11 +74,12 @@ func ParseDateTime(toBeCharge string) (year, month, day, hour, minute, second in
 	hour = timeObj.Hour()
 	minute = timeObj.Minute()
 	second = timeObj.Second()
+	weekday = int(timeObj.Weekday())
 	return
 }
 
 // ParseDate return year, month, day
-func ParseDate(toBeCharge string) (year, month, day int) {
+func ParseDate(toBeCharge string) (year, month, day, weekday int) {
 	timeObj, err := time.Parse(DateFormat, toBeCharge)
 	if err != nil {
 		return
@@ -83,6 +87,7 @@ func ParseDate(toBeCharge string) (year, month, day int) {
 	year = timeObj.Year()
 	month = int(timeObj.Month())
 	day = timeObj.Day()
+	weekday = int(timeObj.Weekday())
 	return
 }
 
@@ -181,4 +186,29 @@ func GetDateTimeDifference(sTime, eTime string) (days, hours, minutes, seconds i
 
 	return days, hours, minutes, seconds, exchange
 
+}
+
+// FormatDateTimeStringToDateTime 格式化日期/时间字符串到标准时间格式
+func FormatDateTimeStringToDateTime(oriTime string) (time.Time, error) {
+	var y, m, d, h, i, s = "0", "0", "0", "0", "0", "0"
+	if !strings.Contains(oriTime, ":") {
+
+		reg := regexp.MustCompile(`(\d+)[/|-](\d+)[/|-](\d+)`) // 查找连续的小写字母
+		match := reg.FindStringSubmatch(oriTime)
+		if len(match) != 4 {
+			return time.Now(), errors.New("暂不支持的日期格式：" + oriTime)
+		}
+		y, m, d = match[1], match[2], match[3]
+	} else {
+		reg := regexp.MustCompile(`(\d+)[/|-](\d+)[/|-](\d+)\s(\d+):(\d+):?(\d+)?`) // 查找连续的小写字母
+		match := reg.FindStringSubmatch(oriTime)
+		if len(match) != 7 {
+			return time.Now(), errors.New("暂不支持的日期格式：" + oriTime)
+		}
+		y, m, d, h, i, s = match[1], match[2], match[3], match[4], match[5], match[6]
+	}
+	datetime := fmt.Sprintf("%04s-%02s-%02s %02s:%02s:%02s", y, m, d, h, i, s)
+	parseTime, err := time.Parse(TimeFormat, datetime)
+
+	return parseTime, err
 }
