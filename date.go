@@ -200,9 +200,9 @@ func FormatDateTimeStringToDateTime(oriTime string) (time.Time, error) {
 		}
 		y, m, d = match[1], match[2], match[3]
 	} else {
-		reg := regexp.MustCompile(`(\d+)[/|-](\d+)[/|-](\d+)\s(\d+):(\d+):?(\d+)?`) // 查找连续的小写字母
+		reg := regexp.MustCompile(`(\d+)[/|-](\d+)[/|-](\d+)[T|\s](\d+):(\d+):?(\d+)?(\+)?(\d+)?:?(\d+)?`) // 查找连续的小写字母
 		match := reg.FindStringSubmatch(oriTime)
-		if len(match) != 7 {
+		if len(match) < 7 {
 			return time.Now(), errors.New("暂不支持的日期格式：" + oriTime)
 		}
 		y, m, d, h, i, s = match[1], match[2], match[3], match[4], match[5], match[6]
