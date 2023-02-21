@@ -212,3 +212,19 @@ func FormatDateTimeStringToDateTime(oriTime string) (time.Time, error) {
 
 	return parseTime, err
 }
+
+// GetThisWeekFirstTime 获取当前周第一天的时间
+func GetThisWeekFirstTime() (thisMonday int64) {
+	now := time.Now()
+	offset := int(time.Monday - now.Weekday())
+	if offset > 0 {
+		offset = -6
+	}
+	weekStartDate := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.Local).AddDate(0, 0, offset)
+	toBeCharge := weekStartDate.Format(TimeFormat)
+
+	loc, _ := time.LoadLocation("Local")
+	theTime, _ := time.ParseInLocation(TimeFormat, toBeCharge, loc)
+	thisMonday = theTime.Unix()
+	return
+}
