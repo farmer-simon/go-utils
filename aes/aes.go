@@ -6,20 +6,21 @@ import (
 	"crypto/cipher"
 )
 
-
 type aesEncrypt struct {
 	key []byte
+	iv  []byte
 }
 
-func New(key []byte) *aesEncrypt {
+func New(key []byte, iv []byte) *aesEncrypt {
 	return &aesEncrypt{
 		key: key,
+		iv:  iv,
 	}
 }
 
 // padding 填充数据
 func padding(src []byte, blockSize int) []byte {
-	padNum := blockSize - len(src) % blockSize
+	padNum := blockSize - len(src)%blockSize
 	pad := bytes.Repeat([]byte{byte(padNum)}, padNum)
 	return append(src, pad...)
 }
@@ -38,7 +39,7 @@ func (encrypt aesEncrypt) Encrypt(src []byte) ([]byte, error) {
 		return nil, err
 	}
 	src = padding(src, block.BlockSize())
-	blockMode := cipher.NewCBCEncrypter(block, encrypt.key)
+	blockMode := cipher.NewCBCEncrypter(block, encrypt.iv)
 	blockMode.CryptBlocks(src, src)
 	return src, nil
 }
@@ -49,7 +50,7 @@ func (encrypt aesEncrypt) Decrypt(src []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	blockMode := cipher.NewCBCDecrypter(block, encrypt.key)
+	blockMode := cipher.NewCBCDecrypter(block, encrypt.iv)
 	blockMode.CryptBlocks(src, src)
 	src = unPadding(src)
 	return src, nil

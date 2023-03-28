@@ -25,12 +25,12 @@ func Sha1(s string) string {
 	return fmt.Sprintf("%x", result)
 }
 
-// Encrypt
+// Encrypt Encrypt
 type Encrypt interface {
-	// encrypt
+	// Encrypt 加密
 	Encrypt(src []byte) ([]byte, error)
 
-	// decrypt
+	// Decrypt 解密
 	Decrypt(src []byte) ([]byte, error)
 }
 
