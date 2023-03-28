@@ -35,8 +35,8 @@ type Encrypt interface {
 }
 
 // Aes encrypt
-func Aes(key []byte) Encrypt {
-	return aes.New(key)
+func Aes(key []byte, iv []byte) Encrypt {
+	return aes.New(key, iv)
 }
 
 // Rsa encrypt
